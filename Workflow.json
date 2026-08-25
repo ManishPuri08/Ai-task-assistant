@@ -1,0 +1,154 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -192,
+        -16
+      ],
+      "id": "977ec262-0e45-4149-8cc9-e46f90a4af3e",
+      "name": "When chat message received",
+      "webhookId": "8edf2f15-e8f4-4681-92da-ea9698a5e881"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "when ask about task. make sure to use google Task tool to get the appropriate list of task and provide the good summary"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        32,
+        -16
+      ],
+      "id": "05008cbe-76dc-4405-8a21-2655b0e0fd06",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        48,
+        224
+      ],
+      "id": "1be93f24-83aa-4f8d-8554-0845970e30ab",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nCwKMZ1Nzv37ryGV",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        176,
+        224
+      ],
+      "id": "4e2435ac-196f-4ebe-9430-9676a4ba00a8",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Get many tasks in Google Tasks",
+        "operation": "getAll",
+        "task": "MDI4NTU5MDEwODEwNzMwNDQzNzE6MDow",
+        "limit": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Limit', ``, 'number') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.googleTasksTool",
+      "typeVersion": 1,
+      "position": [
+        416,
+        144
+      ],
+      "id": "a2ed8ad9-ec94-4455-be9d-41125138fb94",
+      "name": "Google Task",
+      "credentials": {
+        "googleTasksOAuth2Api": {
+          "id": "NR3z0fk0iOlfROyS",
+          "name": "Google Tasks account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "a4e4d05d-0fc6-46d7-8a0c-662366711b14",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cea57c1d8d29ae090c0e5ec92f384df8d1579d5b0a11bf2e1fc98c3f5425d87b"
+  },
+  "nodeGroups": [],
+  "id": "WSgREaw9g56TXoSu",
+  "tags": []
+}
