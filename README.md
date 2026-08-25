@@ -39,8 +39,4 @@ See `workflow.json` for the exact node configuration — import it into n8n to v
 - No filtering by due date or priority at the API level yet; relies on the LLM to summarize sensibly, which may not scale well with very long task lists.
 - Single task list only — no support yet for switching between multiple Google Tasks lists.
 
-## Demo
-*Add a screenshot of the workflow canvas (`screenshot.png`) and, optionally, a short chat example showing the assistant responding to a task query.*
-```
-
 Just paste this into a file named `README.md` in your repo folder. Send the next JSON whenever you're ready for the next one.
