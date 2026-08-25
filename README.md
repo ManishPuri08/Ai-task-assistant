@@ -38,5 +38,3 @@ See `workflow.json` for the exact node configuration — import it into n8n to v
 - Currently read-only — the agent can view tasks but not create, complete, or edit them. Adding write operations (mark complete, add task) would be a natural v2.
 - No filtering by due date or priority at the API level yet; relies on the LLM to summarize sensibly, which may not scale well with very long task lists.
 - Single task list only — no support yet for switching between multiple Google Tasks lists.
-
-Just paste this into a file named `README.md` in your repo folder. Send the next JSON whenever you're ready for the next one.
